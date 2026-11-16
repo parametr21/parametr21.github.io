@@ -2,6 +2,15 @@
 <title>Параметр без страха</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Путеводитель по графическому методу решения задач с параметром (задание 21): теория, алгоритмы для 11 типов заданий и 78 разобранных заданий с интерактивными графиками.">
+<meta name="author" content="Исраелян М., Квитка К., Антонюк Д.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Параметр без страха">
+<meta property="og:title" content="Параметр без страха — задачи с параметром графическим методом">
+<meta property="og:description" content="Теория, алгоритмы для 11 типов заданий и 78 разобранных заданий с интерактивными графиками.">
+<meta property="og:url" content="https://parametr21.github.io/">
+<meta property="og:locale" content="ru_RU">
+<link rel="icon" id="favicon">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
@@ -286,7 +295,11 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   .th-types > div { flex-direction: column; gap: 4px; }
   .btnrow .btn { flex: 1; min-height: 44px; }
 }
-</style>
+/* ---------- о проекте, подвал ---------- */
+.about p { margin: 0 0 6px; }
+.about p:last-child { margin-bottom: 0; }
+.sitefoot { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; line-height: 1.5; }
+.status</style>
 
 <header>
   <a class="logo" href="#home" id="logo">
@@ -365,6 +378,7 @@ const TYPES = [
   { id: 3, title: "Параллельный перенос",
     sign: "подвижная линия имеет вид y = kx + a с постоянным наклоном (чаще y = x + a) — при изменении a она сдвигается, не поворачиваясь.",
     algorithm: [
+      "Найти ОДЗ: подкоренные выражения ≥ 0, знаменатели ≠ 0. Отметить, какие части графиков из-за этого пропадают: концы дуг и выколотые точки потом станут граничными положениями.",
       "Преобразовать уравнение без параметра: раскрыть модули, разложить на множители, выделить полные квадраты; если обе части имеют вид <span class=\"math\">g(u) = g(v)</span> с монотонной <span class=\"math\">g</span> — заменить на <span class=\"math\">u = v</span>. Построить неподвижное множество.",
       "Записать подвижную линию в виде <span class=\"math\">y = kx + a</span> (наклон <span class=\"math\">k</span> не зависит от <span class=\"math\">a</span>): при изменении <span class=\"math\">a</span> она сдвигается параллельно самой себе.",
       "Найти граничные положения: прохождение через изломы, концы дуг и выколотые точки (подставить координаты точки) и касание (дискриминант общего уравнения <span class=\"math\">D = 0</span>).",
@@ -372,7 +386,11 @@ const TYPES = [
       "Выбрать промежутки с нужным числом решений."
     ] },
   { id: 4, title: "Вращение прямой (пучок прямых)",
-    sign: "после преобразований (иногда после замены) одна часть — неподвижный график, другая — прямая, которая при любом a проходит через одну и ту же точку: y = k(x − x₀) + y₀, наклон k зависит от a; сюда же — условие «наименьшее значение функции больше числа» и «уголок» a|x − x₀| с неподвижной вершиной.",
+    sign: [
+      "после преобразований (иногда после замены) одна часть — неподвижный график, другая — прямая, которая при любом a проходит через одну и ту же точку: y = k(x − x₀) + y₀, наклон k зависит от a;",
+      "условие «наименьшее значение функции больше числа»: его переписывают как «график лежит выше прямой», и прямая вращается вокруг неподвижной точки;",
+      "«уголок» a|x − x₀| с неподвижной вершиной: при изменении a ветви поворачиваются вокруг вершины.",
+    ],
     algorithm: [
       "Если нужна замена (<span class=\"math\">t = 7<sup>|x|</sup></span>, <span class=\"math\">u = cos t</span> и т. п.), сделать её: найти, какие значения принимает новая переменная и сколько значений <span class=\"math\">x</span> соответствует каждому из них.",
       "Привести условие к виду <span class=\"math\">f(x) = k(x − x₀) + y₀</span>: слева — неподвижная функция, справа — прямая, наклон которой зависит от <span class=\"math\">a</span>. Условие «наименьшее значение больше <span class=\"math\">m</span>» переписать как «график лежит выше прямой».",
@@ -384,6 +402,7 @@ const TYPES = [
   { id: 5, title: "Подвижный «уголок»",
     sign: "параметр стоит под модулем вида |x − a| или |kx − a|: график модуля — «уголок», вершина которого сдвигается при изменении a, а наклон ветвей не меняется.",
     algorithm: [
+      "Найти ОДЗ: подкоренные выражения ≥ 0, знаменатели ≠ 0. Отметить, какие части графиков из-за этого пропадают: концы дуг и выколотые точки потом станут граничными положениями.",
       "Записать условие так, чтобы модуль с параметром стоял отдельно: <span class=\"math\">f(x) = k|x − a|</span>, <span class=\"math\">|kx − a| ≤ g(x)</span> или <span class=\"math\">a + |x − a| ≤ g(x)</span>.",
       "Построить неподвижный график: параболу, «уголок», ветвь корня.",
       "График модуля — «уголок»: найти его вершину и ветви. При изменении <span class=\"math\">a</span> вершина сдвигается (по оси <span class=\"math\">Ox</span>, по прямой <span class=\"math\">y = const</span> или <span class=\"math\">y = x</span>), наклон ветвей не меняется.",
@@ -393,20 +412,22 @@ const TYPES = [
   { id: 6, title: 'Семейство окружностей',
     sign: 'после выделения полных квадратов одно из уравнений — окружность, центр или радиус которой зависят от a.',
     algorithm: [
+      'Найти ОДЗ: подкоренные выражения ≥ 0, знаменатели ≠ 0. Отметить, какие части графиков из-за этого пропадают: концы дуг и выколотые точки потом станут граничными положениями.',
       'Выделить полные квадраты: <span class="math">(x − x₀)² + (y − y₀)² = R²</span>, где центр и радиус зависят от <span class="math">a</span>. Учесть <span class="math">R² ≥ 0</span> (при <span class="math">R = 0</span> — одна точка).',
       'Построить неподвижное множество: окружность (пара окружностей при <span class="math">|x|</span>), прямые, полосу <span class="math">|Ax + By + C| ≤ m</span>, ромб, дуги парабол с <span class="math">|y|</span>, полуплоскость.',
       'Определить движение окружности: меняется радиус или центр движется по прямой.',
-      'Найти граничные положения через расстояния от центра: до прямой <span class="math">d = |Ax₀ + By₀ + C| / √(A² + B²)</span>; до центра другой окружности (касание при <span class="math">d = R₁ + R₂</span> или <span class="math">d = |R₁ − R₂|</span>); до вершин и концов; до параболы — квадрат расстояния как функция от <span class="math">u = (x − x₀)²</span>.',
+      'Найти граничные положения через расстояния от центра: до прямой <span class="math">d = |Ax₀ + By₀ + C| / √(A² + B²)</span>; до центра другой окружности (касание при <span class="math">d = R₁ + R₂</span> или <span class="math">d = |R₁ − R₂|</span>); до вершин и концов.',
+      'Если неподвижная линия — парабола (или дуги парабол при <span class="math">|y|</span>), взять на ней точку <span class="math">(x; y(x))</span> и записать квадрат расстояния до центра окружности <span class="math">d²</span>. Сделать замену <span class="math">t = x − x₀</span>, затем <span class="math">u = t²</span> (<span class="math">x₀</span> — абсцисса центра, она же ось симметрии параболы): получится квадратичная функция <span class="math">g(u)</span> на отрезке. Общие точки окружности и параболы — корни уравнения <span class="math">g(u) = R²</span>: вершина <span class="math">g</span> даёт касание, концы отрезка — концы дуг, каждому <span class="math">u > 0</span> соответствуют две точки <span class="math">t = ±√u</span>.',
       'Сравнить радиус с найденными расстояниями, посчитать число общих точек и выбрать подходящие <span class="math">a</span>.',
     ] },
   { id: 7, title: 'Геометрический смысл суммы расстояний',
     sign: 'в уравнении сумма корней вида √((x − x₁)² + (y − y₁)²).',
     algorithm: [
+      'Найти ОДЗ второго условия системы (корни, знаменатели) и ограничения на <span class="math">a</span> из условия (целые, неотрицательные). Концы и выколотые точки потом станут граничными положениями.',
       'Записать каждый корень <span class="math">√((x − x₁)² + (y − y₁)²)</span> как расстояние <span class="math">MA</span> от точки <span class="math">M(x; y)</span> до точки <span class="math">A(x₁; y₁)</span>.',
       'Найти <span class="math">AB</span> и сравнить с правой частью. По неравенству треугольника <span class="math">MA + MB ≥ AB</span>, поэтому <span class="math">MA + MB = AB</span> задаёт отрезок <span class="math">AB</span>.',
       'Изобразить отрезок (его концы могут зависеть от <span class="math">a</span>) и второе условие системы.',
       'Найти значения <span class="math">a</span>, при которых отрезок и второе множество имеют нужное число общих точек: касание, прохождение через концы отрезка, корни на отрезке.',
-      'Учесть ограничения на <span class="math">a</span> из условия (целые, неотрицательные).',
     ] },
   { id: 8, title: 'Кусочно-заданные функции: исследование на экстремумы',
     sign: 'функция содержит |x − a²| и спрашивается о точках экстремума.',
@@ -414,7 +435,7 @@ const TYPES = [
       'Раскрыть модуль: при <span class="math">x ≥ a²</span> и при <span class="math">x < a²</span> функция задаётся разными квадратичными выражениями.',
       'Найти абсциссы вершин обеих парабол.',
       'Точки экстремума — вершины, попадающие на «свой» промежуток, и точка излома <span class="math">x = a²</span>, если в ней меняется характер монотонности.',
-      'Рассмотреть случаи расположения <span class="math">a²</span> относительно вершин и определить число и вид экстремумов.',
+      'Построить эскиз графика: две части парабол, сшитые в точке излома <span class="math">x = a²</span>. При изменении <span class="math">a</span> меняется абсцисса излома <span class="math">a²</span>, а вершины парабол остаются на месте. Нарисовать эскиз для каждого положения <span class="math">a²</span>: левее обеих вершин, между ними, правее обеих — и по эскизу посчитать точки экстремума.',
       'Решить полученные неравенства относительно <span class="math">a</span>.',
     ] },
   { id: 9, title: "Расположение корней квадратного трёхчлена на промежутке",
@@ -431,8 +452,8 @@ const TYPES = [
     algorithm: [
       "Число <span class=\"math\">t</span> принадлежит множеству значений функции тогда и только тогда, когда уравнение <span class=\"math\">f(x) = t</span> имеет решение.",
       "Для дроби <span class=\"math\">P(x) / Q(x)</span> умножить на знаменатель и получить квадратное уравнение относительно <span class=\"math\">x</span>. Отдельно рассмотреть случай, когда старший коэффициент равен нулю.",
-      "Условие <span class=\"math\">D ≥ 0</span> записать как неравенство относительно <span class=\"math\">t</span>: в одной части квадратичная функция от <span class=\"math\">t</span>, в другой — линейная, в которую входит <span class=\"math\">a</span>.",
-      "Построить параболу и прямую на плоскости <span class=\"math\">(t; z)</span>. Множество значений функции — те <span class=\"math\">t</span>, при которых парабола не выше прямой: отрезок <span class=\"math\">[t₁; t₂]</span> между точками пересечения.",
+      "Условие <span class=\"math\">D ≥ 0</span> записать как неравенство относительно <span class=\"math\">t</span>: в одной части квадратичная функция от <span class=\"math\">t</span>, в другой — линейная, в которую входит <span class=\"math\">a</span>. Слагаемые перенести так, чтобы у квадратичной функции старший коэффициент был положительным (ветви вверх), — тогда неравенство имеет вид «парабола ≤ прямая».",
+      "Построить параболу и прямую на плоскости <span class=\"math\">(t; z)</span>: по горизонтали — <span class=\"math\">t</span> (возможные значения функции), по вертикали — <span class=\"math\">z</span>, значения обеих частей неравенства, то есть парабола <span class=\"math\">z = pt² + qt + r</span> (<span class=\"math\">p > 0</span>) и прямая <span class=\"math\">z = kt + b</span>. Множество значений функции — те <span class=\"math\">t</span>, при которых парабола не выше прямой: отрезок <span class=\"math\">[t₁; t₂]</span> между точками пересечения.",
       "Наложить требование задачи: какие точки параболы должны лежать не выше прямой, а какие — выше. Граничные положения — прямая проходит через эти точки; из них найти <span class=\"math\">a</span>."
     ] },
   { id: 11, title: "Функциональный метод: оценка и сравнение графиков",
@@ -448,6 +469,25 @@ const TYPES = [
 
 const S2 = Math.SQRT2, S7 = Math.sqrt(7);
 const M = s => `<span class="math">${s}</span>`;
+/* формулы в обычном тексте («Когда применять», признаки типов) — тем же шрифтом, что и в решениях */
+function mathify(text) {
+  return text.replace(/[A-Za-z|√(][A-Za-z0-9 ()|√=+\-−·²₀₁₂<>≤≥]*/g, m => {
+    if (!/[A-Za-z]/.test(m)) return m;
+    let pre = '', body = m, post = '';
+    const cnt = (str, c) => str.split(c).length - 1;
+    for (;;) {
+      const t = body.replace(/\s+$/, ''); post = body.slice(t.length) + post; body = t;
+      const l = body.replace(/^\s+/, ''); pre += body.slice(0, body.length - l.length); body = l;
+      if (body.startsWith('(') && cnt(body, '(') > cnt(body, ')')) { pre += '('; body = body.slice(1); continue; }
+      if (body.endsWith(')') && cnt(body, ')') > cnt(body, '(')) { post = ')' + post; body = body.slice(0, -1); continue; }
+      break;
+    }
+    return body ? pre + M(body) + post : m;
+  });
+}
+const plural = (n, one, few, many) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 12 || b > 14) ? few : many; };
+const nTasks = n => `${n} ${plural(n, 'задание', 'задания', 'заданий')}`;
+const ABOUT_FOOT = '© 2026 Исраелян М., Квитка К., Антонюк Д. · МОУ «Бендерский теоретический лицей им.&nbsp;Л.&nbsp;С.&nbsp;Берга», г.&nbsp;Бендеры · Условия заданий: банк заданий ЕГЭ по математике, ГУ «ЦЭКО», 2025';
 const F = (n, d) => `<span class="fr"><span>${n}</span><span>${d}</span></span>`;   // дробь
 const R = x => `√<span class="rt">${x}</span>`;                                       // корень
 const SYS = (...rows) => `<span class="math sys">${rows.map(r => `<span>${r}</span>`).join('')}</span>`; // система
@@ -5570,11 +5610,11 @@ const THEORY = [
     <p>Если у неподвижного графика есть концы или изломы, контрольными будут и положения, когда через них проходит вершина или ветвь «уголка».</p>
     <p class="th-type">Так решаются задания <button class="th-link" data-type="5">типа 5</button></p>` },
   { title: 'Окружность меняет радиус', plot: 'th5', html: `
-    <p>${M('x² + y² = a²')} — окружность с центром в начале координат и радиусом ${M('|a|')}. При изменении <i>a</i> она «раздувается».</p>
+    <p>${M('x² + y² = a²')} — окружность с центром в начале координат и радиусом ${M('|a|')}. При изменении <i>a</i> она «раздувается». Значения ${M('a')} и ${M('−a')} дают одну и ту же окружность, поэтому на графике достаточно ${M('a ≥ 0')}.</p>
     <p>Неподвижный график — квадрат ${M('|x| + |y| = 2')}. Контрольные значения:</p>
     <ul>
-      <li>окружность касается сторон квадрата: расстояние от центра до прямой ${M('x + y = 2')} равно ${M('√2')};</li>
-      <li>окружность проходит через вершины квадрата: ${M('a = 2')}.</li>
+      <li>окружность касается сторон квадрата: расстояние от центра до прямой ${M('x + y = 2')} равно ${M('√2')}, то есть ${M('a = ±√2')};</li>
+      <li>окружность проходит через вершины квадрата: ${M('a = ±2')}.</li>
     </ul>
     <p>Если от параметра зависит центр, окружность не раздувается, а движется — идея та же.</p>
     <p class="th-type">Так решаются задания <button class="th-link" data-type="6">типа 6</button></p>` },
@@ -5608,7 +5648,7 @@ const THEORY = [
       <li><b>Множество значений.</b> Число ${M('t')} — значение функции ${M('f')}, если уравнение ${M('f(x) = t')} имеет решение. <button class="th-link" data-type="10">Тип 10</button></li>
       <li><b>Экстремумы кусочной функции.</b> Ищутся среди вершин парабол на «своих» промежутках и точек излома. <button class="th-link" data-type="8">Тип 8</button></li>
     </ul>` },
-  { title: 'Как узнать тип задания', html: `
+  { id: 'types', title: 'Как узнать тип задания', html: `
     <p>Признак в условии подсказывает, как будет двигаться график. Нажмите на тип, чтобы открыть алгоритм и задания.</p>
     <div class="th-types">${[
       [1, 'параметр отделяется от переменной: h(a) = g(x)'],
@@ -5622,7 +5662,21 @@ const THEORY = [
       [9, 'после замены — квадратный трёхчлен, корни на промежутке'],
       [10, 'вопрос про множество значений функции'],
       [11, 'несколько модулей и корень: одна часть «перевешивает» другую'],
-    ].map(([n, s]) => `<div><button class="th-link" data-type="${n}">Тип ${n}</button><span>${s}</span></div>`).join('')}</div>` },
+    ].map(([n, s]) => `<div><button class="th-link" data-type="${n}">Тип ${n}</button><span>${mathify(s)}</span></div>`).join('')}</div>
+    <p style="margin-top:16px"><b>В каком порядке проверять.</b> Признаки иногда пересекаются (например, модуль с параметром бывает и в типе 2, и в типе 5), поэтому удобно идти от самых узких признаков к самым общим:</p>
+    <ol>${[
+      [7, 'есть сумма корней вида ' + M('√((x − x₁)² + (y − y₁)²)')],
+      [8, 'спрашивают о точках экстремума функции с ' + M('|x − a²|')],
+      [10, 'спрашивают о множестве значений функции'],
+      [9, 'после замены получается квадратный трёхчлен с требованием к корням на промежутке'],
+      [6, 'после выделения полных квадратов появляется окружность, центр или радиус которой зависят от ' + M('a')],
+      [11, 'несколько модулей и корень, одна часть «перевешивает» другую'],
+      [1, 'параметр отделяется: ' + M('h(a) = g(x)')],
+      [3, 'подвижная прямая с постоянным наклоном'],
+      [4, 'подвижная прямая проходит через неподвижную точку'],
+      [5, 'модуль ' + M('|x − a|') + ' — сдвигающийся «уголок»'],
+      [2, 'ничего из перечисленного: ' + M('x') + ' и ' + M('a') + ' входят «равноправно» — строим всё на плоскости ' + M('(x; a)')],
+    ].map(([n, s]) => `<li>${s} → <button class="th-link" data-type="${n}">Тип ${n}</button></li>`).join('')}</ol>` },
 ];
 
 
@@ -7480,24 +7534,36 @@ function mountPlot(host, G) {
 
     // ключевые точки
     (G.texts || []).forEach(t => tag(t.t, t.x, t.y, col.text, 'center'));
+    // подписи точек раскладываются так, чтобы не налезать друг на друга и на сами точки
+    const placed = [];
+    const busy = r => placed.some(q => r[0] < q[0] + q[2] + 3 && q[0] < r[0] + r[2] + 3 && r[1] < q[1] + q[3] + 1 && q[1] < r[1] + r[3] + 1);
+    const putLabel = (txt, px, py, font, above) => {
+      ctx.font = font; const w = ctx.measureText(txt).width, h = 14;
+      const R = [[9, 5], [9, -5 - h]], L = [[-9 - w, 5], [-9 - w, -5 - h]];
+      let cand = above ? [R[1], R[0], L[1], L[0]] : [R[0], R[1], L[0], L[1]];
+      cand = cand.concat(cand.map(([dx, dy]) => [dx, dy + (dy > 0 ? 16 : -16)]));
+      let pick = null;
+      for (const [dx, dy] of cand) { const r = [px + dx, py + dy, w, h];
+        if (r[0] < 2 || r[0] + w > W - 2 || r[1] < 2 || r[1] + h > H - 2) continue;
+        if (!busy(r)) { pick = r; break; } }
+      if (!pick) pick = [px + cand[0][0], py + cand[0][1], w, h];
+      placed.push(pick);
+      ctx.fillStyle = col.text; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+      ctx.lineWidth = 4; ctx.strokeStyle = col.panel; ctx.strokeText(txt, pick[0], pick[1]); ctx.fillText(txt, pick[0], pick[1]);
+    };
+    const inf = (G.infinite || []).some(x => Math.abs(x - a) < 1e-9);
+    const pts = inf ? [] : (G.points ? G.points(a) : solve(G, a, view()));
+    (G.marks || []).concat(pts.map(p => ({ x: p[0], y: p[1] }))).forEach(m => placed.push([X(m.x) - 7, Y(m.y) - 7, 14, 14]));
     (G.marks || []).forEach(m => {
       if (m.open) { ctx.beginPath(); ctx.arc(X(m.x), Y(m.y), 5, 0, 2 * Math.PI); ctx.fillStyle = col.panel; ctx.fill(); ctx.lineWidth = 2.2; ctx.strokeStyle = col.text; ctx.stroke(); }
       else dot(m.x, m.y, col.blue, 4.5);
-      if (!m.label) return;
-      ctx.font = '700 13px "Manrope", sans-serif'; ctx.fillStyle = col.text; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
-      ctx.lineWidth = 4; ctx.strokeStyle = col.panel; ctx.strokeText(m.label, X(m.x) + 8, Y(m.y) - 4);
-      ctx.fillText(m.label, X(m.x) + 8, Y(m.y) - 4);
     });
 
     // точки пересечения
-    const inf = (G.infinite || []).some(x => Math.abs(x - a) < 1e-9);
-    const pts = inf ? [] : (G.points ? G.points(a) : solve(G, a, view()));
     pts.forEach(p => dot(p[0], p[1], col.green));
-    if (G.ptLabels !== false && pts.length && pts.length <= 4) {
-      ctx.font = '600 12px "JetBrains Mono", monospace'; ctx.fillStyle = col.text; ctx.textBaseline = 'top'; ctx.textAlign = 'left';
-      ctx.lineWidth = 4; ctx.strokeStyle = col.panel;
-      pts.forEach(p => { const s = `(${fmt(p[0])}; ${fmt(p[1])})`; ctx.strokeText(s, X(p[0]) + 10, Y(p[1]) + 6); ctx.fillText(s, X(p[0]) + 10, Y(p[1]) + 6); });
-    }
+    (G.marks || []).forEach(m => m.label && putLabel(m.label, X(m.x), Y(m.y), '700 13px "Manrope", sans-serif', true));
+    if (G.ptLabels !== false && pts.length && pts.length <= 4)
+      pts.forEach(p => putLabel(`(${fmt(p[0])}; ${fmt(p[1])})`, X(p[0]), Y(p[1]), '600 12px "JetBrains Mono", monospace', false));
     const ok = inAnswer(G, a);
     status.className = 'status' + (ok ? ' ok' : '');
     status.textContent = (G.status ? G.status(a, pts) : `a = ${fmt(a)} → Решений: ${inf ? '∞' : pts.length}`) + (ok ? '  ✓ подходит' : '');
@@ -7554,11 +7620,11 @@ function taskChips(list) {
   return `<div class="chips">${list.map(t => `<button class="chip ${t.statement ? '' : 'stubbed'}" data-task="${t.num}">№${t.num}</button>`).join('')}</div>`;
 }
 
-function taskBody(t, { revealed = true } = {}) {
+function taskBody(t, { revealed = true, cond = true } = {}) {
   const type = typeById(t.type);
   return `
-    <div class="card cond"><div class="label">Условие</div>
-      <div class="prose">${t.statement ? `<p>${t.statement}</p>` : stubText('Условие задания')}</div></div>
+    ${cond ? `<div class="card cond"><div class="label">Условие</div>
+      <div class="prose">${t.statement ? `<p>${t.statement}</p>` : stubText('Условие задания')}</div></div>` : ''}
     ${revealed ? `
     <div class="card"><div class="label">Решение</div>
       <div class="prose">${t.solution && t.solution.length ? t.solution.map(p => `<p>${p}</p>`).join('') : stubText('Решение')}</div></div>
@@ -7576,10 +7642,17 @@ const views = {
     return `
       <h1>Задание 21: задачи с параметром</h1>
       <div class="stack">
-        <div class="card prose"><p>Путеводитель по графическому методу. Выберите тип задания слева, найдите задание по номеру в поиске или потренируйтесь на случайной задаче.</p></div>
+        <div class="card prose"><p>Путеводитель по графическому методу. В нём разобраны задания №1–79 из банка заданий ЕГЭ ЦЭКО, распределённые по ${TYPES.length} типам: у каждого типа свой алгоритм решения. Выберите тип задания слева, найдите задание по номеру в поиске или потренируйтесь на случайной задаче.</p>
+          <p>Не знаете, какой тип у задачи? Признаки и порядок проверки — в разделе <a href="#theory-types" style="color:var(--blue-soft)">«Как узнать тип задания»</a>.</p></div>
         <div class="home-grid">${TYPES.map(t => `
           <button class="card" data-type="${t.id}"><span class="n">Тип ${t.id}</span><b>${t.title}</b>
-          <span style="color:var(--muted);font-size:13px">${TASKS.filter(x => x.type === t.id).length} заданий</span></button>`).join('')}
+          <span style="color:var(--muted);font-size:13px">${nTasks(TASKS.filter(x => x.type === t.id).length)}</span></button>`).join('')}
+        </div>
+        <div class="card prose about"><div class="label">О проекте</div>
+          <p>Путеводитель создан в рамках исследовательской работы «Параметр без страха» (2026).</p>
+          <p><b>Авторы:</b> Исраелян Михаэль, Квитка Кирилл, Антонюк Дмитрий — учащиеся 11-Г класса МОУ «Бендерский теоретический лицей им.&nbsp;Л.&nbsp;С.&nbsp;Берга», г.&nbsp;Бендеры.</p>
+          <p><b>Научный руководитель:</b> Кожухарова Т. А., учитель математики высшей квалификационной категории.</p>
+          <p><b>Условия заданий:</b> банк заданий ЕГЭ по математике, ГУ «Центр экспертизы качества образования» (Тирасполь, 2025).</p>
         </div>
       </div>`;
   },
@@ -7591,7 +7664,7 @@ const views = {
       <div class="crumbs"><a href="#home">Главная</a> / Тип ${id}</div>
       <h1>${t.title}</h1>
       <div class="stack">
-        ${t.sign ? `<div class="card prose"><p><b>Когда применять:</b> ${t.sign}</p></div>` : ''}
+        ${t.sign ? `<div class="card prose">${Array.isArray(t.sign) ? `<p><b>Когда применять:</b></p><ul>${t.sign.map(x => `<li>${mathify(x)}</li>`).join('')}</ul>` : `<p><b>Когда применять:</b> ${mathify(t.sign)}</p>`}</div>` : ''}
         <div class="card"><div class="label">Алгоритм решения</div>
           <div class="prose">${t.algorithm.length ? `<ol>${t.algorithm.map(s => `<li>${s}</li>`).join('')}</ol>` : stubText('Алгоритм решения')}</div></div>
         <div class="card"><div class="label">Задания этого типа</div>${list.length ? taskChips(list) : stubText('Список заданий')}</div>
@@ -7610,7 +7683,7 @@ const views = {
     return `
       <h1>Теория</h1>
       <div class="stack">${THEORY.map(s => `
-        <div class="card"><h3>${s.title}</h3>${s.plot
+        <div class="card"${s.id ? ` id="th-${s.id}"` : ''}><h3>${s.title}</h3>${s.plot
           ? `<div class="th-row"><div class="prose">${s.html}</div><div class="thplot" data-k="${s.plot}"></div></div>`
           : `<div class="prose">${s.html || stubText('Теоретические сведения')}</div>`}</div>`).join('')}
       </div>`;
@@ -7622,7 +7695,7 @@ const views = {
       <h1>Тренажёр</h1>
       <div class="task-layout">
         <div class="stack">
-          <div class="crumbs" style="margin:0">Случайное задание: <a href="#task-${t.num}">№${t.num}</a> · Тип ${t.type}</div>
+          <div class="crumbs" style="margin:0">Случайное задание: <a href="#task-${t.num}">№${t.num}</a></div>
           ${taskBody(t, { revealed: trainer.revealed })}
           <div class="btnrow">
             ${trainer.revealed ? '' : '<button class="btn primary" id="tr-show">Показать решение</button>'}
@@ -7634,7 +7707,8 @@ const views = {
   },
   notfound(num) {
     renderTypes(null);
-    return `<h1>Задание №${num} не найдено</h1><div class="card prose"><p>Такого номера нет в путеводителе. Проверьте номер и попробуйте ещё раз.</p></div>`;
+    if (num === 7) return `<h1>Задание №7</h1><div class="card prose"><p>Задание №7 из банка заданий не вошло в путеводитель: оно не решается ни одним из ${TYPES.length} алгоритмов, по которым построен путеводитель.</p></div>`;
+    return `<h1>Задание №${num} не найдено</h1><div class="card prose"><p>Такого номера нет в путеводителе: в банке задания с номерами от 1 до 79. Проверьте номер и попробуйте ещё раз.</p></div>`;
   }
 };
 
@@ -7648,11 +7722,11 @@ function route() {
   let m, html, task = null;
   if ((m = h.match(/^type-(\d+)$/))) html = views.type(+m[1]);
   else if ((m = h.match(/^task-(\d+)$/))) { html = views.task(+m[1]); task = taskByNum(+m[1]); }
-  else if (h === 'theory') html = views.theory();
+  else if (h === 'theory' || h === 'theory-types') html = views.theory();
   else if (h === 'trainer') { if (!trainer.current) trainer.next(); html = views.trainer(); task = trainer.revealed ? trainer.current : null; }
   else html = views.home();
-  $main.innerHTML = html;
-  document.getElementById('nav-theory').classList.toggle('active', h === 'theory');
+  $main.innerHTML = html + `<footer class="sitefoot">${ABOUT_FOOT}</footer>`;
+  document.getElementById('nav-theory').classList.toggle('active', h.startsWith('theory'));
   document.getElementById('nav-trainer').classList.toggle('active', h === 'trainer');
   const g = document.getElementById('graph');
   if (g && task && task.graph) mountPlot(g, task.graph);
@@ -7660,8 +7734,9 @@ function route() {
   document.querySelectorAll('.thplot').forEach(el => THGRAPHS[el.dataset.k] && mountPlot(el, THGRAPHS[el.dataset.k]));
   italicizeMath($main);
   document.body.classList.remove('types-open');
-  document.querySelectorAll('.mnav [data-go]').forEach(b => b.classList.toggle('active', b.dataset.go === (h.startsWith('task') || h.startsWith('type') ? 'types' : h)));
+  document.querySelectorAll('.mnav [data-go]').forEach(b => b.classList.toggle('active', b.dataset.go === (h.startsWith('task') || h.startsWith('type') ? 'types' : h.startsWith('theory') ? 'theory' : h)));
   window.scrollTo(0, 0);
+  if (h === 'theory-types') { const el = document.getElementById('th-types'); if (el) el.scrollIntoView(); }
 }
 function italicizeMath(root) {
   const FN = /^(log|ln|lg|sin|cos|tg|ctg|arcsin|arccos|arctg|max|min|const|sgn)$/;
@@ -7712,6 +7787,7 @@ $main.addEventListener('click', e => {
   if (e.target.id === 'tr-next') { trainer.next(); route(); }
 });
 window.addEventListener('hashchange', route);
+try { document.getElementById('favicon').href = document.querySelector('.logo-mark').src; } catch (e) {}
 
 /* ---------- поиск ---------- */
 const $s = document.getElementById('search'), $sug = document.getElementById('suggest');
