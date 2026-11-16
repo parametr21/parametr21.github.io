@@ -296,8 +296,11 @@ input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 
   .btnrow .btn { flex: 1; min-height: 44px; }
 }
 /* ---------- о проекте, подвал ---------- */
-.about p { margin: 0 0 6px; }
-.about p:last-child { margin-bottom: 0; }
+.intro { max-width: 70ch; color: var(--muted); }
+.intro p { margin: 0; }
+.home-sep { margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+.stack > .home-sep + .home-grid { margin-top: -6px; }
+.colophon { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; line-height: 1.6; }
 .sitefoot { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; line-height: 1.5; }
 .status</style>
 
@@ -7642,18 +7645,13 @@ const views = {
     return `
       <h1>Задание 21: задачи с параметром</h1>
       <div class="stack">
-        <div class="card prose"><p>Путеводитель по графическому методу. В нём разобраны задания №1–79 из банка заданий ЕГЭ ЦЭКО, распределённые по ${TYPES.length} типам: у каждого типа свой алгоритм решения. Выберите тип задания слева, найдите задание по номеру в поиске или потренируйтесь на случайной задаче.</p>
-          <p>Не знаете, какой тип у задачи? Признаки и порядок проверки — в разделе <a href="#theory-types" style="color:var(--blue-soft)">«Как узнать тип задания»</a>.</p></div>
+        <div class="intro"><p>Путеводитель по графическому методу. В нём разобраны задания №1–79 из банка заданий ЕГЭ ЦЭКО, распределённые по ${TYPES.length} типам: у каждого типа свой алгоритм решения. Выберите тип задания слева, найдите задание по номеру в поиске или потренируйтесь на случайной задаче.</p></div>
+        <div class="home-sep">Типы заданий</div>
         <div class="home-grid">${TYPES.map(t => `
           <button class="card" data-type="${t.id}"><span class="n">Тип ${t.id}</span><b>${t.title}</b>
           <span style="color:var(--muted);font-size:13px">${nTasks(TASKS.filter(x => x.type === t.id).length)}</span></button>`).join('')}
         </div>
-        <div class="card prose about"><div class="label">О проекте</div>
-          <p>Путеводитель создан в рамках исследовательской работы «Параметр без страха» (2026).</p>
-          <p><b>Авторы:</b> Исраелян Михаэль, Квитка Кирилл, Антонюк Дмитрий — учащиеся 11-Г класса МОУ «Бендерский теоретический лицей им.&nbsp;Л.&nbsp;С.&nbsp;Берга», г.&nbsp;Бендеры.</p>
-          <p><b>Научный руководитель:</b> Кожухарова Т. А., учитель математики высшей квалификационной категории.</p>
-          <p><b>Условия заданий:</b> банк заданий ЕГЭ по математике, ГУ «Центр экспертизы качества образования» (Тирасполь, 2025).</p>
-        </div>
+        <div class="colophon">Путеводитель создан в рамках исследовательской работы «Параметр без страха» (2026).<br>Авторы: Исраелян Михаэль, Квитка Кирилл, Антонюк Дмитрий — учащиеся 11-Г класса МОУ «Бендерский теоретический лицей им.&nbsp;Л.&nbsp;С.&nbsp;Берга», г.&nbsp;Бендеры.<br>Научный руководитель: Кожухарова Т. А., учитель математики высшей квалификационной категории.<br>Условия заданий: банк заданий ЕГЭ по математике, ГУ «Центр экспертизы качества образования» (Тирасполь, 2025).</div>
       </div>`;
   },
   type(id) {
@@ -7695,7 +7693,7 @@ const views = {
       <h1>Тренажёр</h1>
       <div class="task-layout">
         <div class="stack">
-          <div class="crumbs" style="margin:0">Случайное задание: <a href="#task-${t.num}">№${t.num}</a></div>
+          ${trainer.revealed ? `<div class="crumbs" style="margin:0"><a href="#task-${t.num}">Задание №${t.num}</a></div>` : ''}
           ${taskBody(t, { revealed: trainer.revealed })}
           <div class="btnrow">
             ${trainer.revealed ? '' : '<button class="btn primary" id="tr-show">Показать решение</button>'}
@@ -7725,7 +7723,7 @@ function route() {
   else if (h === 'theory' || h === 'theory-types') html = views.theory();
   else if (h === 'trainer') { if (!trainer.current) trainer.next(); html = views.trainer(); task = trainer.revealed ? trainer.current : null; }
   else html = views.home();
-  $main.innerHTML = html + `<footer class="sitefoot">${ABOUT_FOOT}</footer>`;
+  $main.innerHTML = html + (h === 'home' ? '' : `<footer class="sitefoot">${ABOUT_FOOT}</footer>`);
   document.getElementById('nav-theory').classList.toggle('active', h.startsWith('theory'));
   document.getElementById('nav-trainer').classList.toggle('active', h === 'trainer');
   const g = document.getElementById('graph');
